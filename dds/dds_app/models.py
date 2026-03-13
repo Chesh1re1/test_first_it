@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 
 class Status(models.Model):
@@ -88,13 +89,43 @@ class Subcategory(models.Model):
 
 
 class DDS(models.Model):
-    date_create = models.DateField(auto_now_add=True, verbose_name="Дата создания")
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name="Статус")
-    type = models.ForeignKey(Type, on_delete=models.CASCADE, verbose_name="Тип")
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория")
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, verbose_name="Подкатегория")
-    sum = models.CharField(max_length=256, blank=False, null=False, verbose_name="Сумма")
-    comment = models.TextField(blank=True, null=True, verbose_name="Комментарий")
+    date_create = models.DateField(
+        default=date.today,
+        verbose_name="Дата создания",
+        blank=False,
+        null=False
+    )
+    status = models.ForeignKey(
+        Status,
+        on_delete=models.CASCADE,
+        verbose_name="Статус"
+    )
+    type = models.ForeignKey(
+        Type,
+        on_delete=models.CASCADE,
+        verbose_name="Тип"
+    )
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        verbose_name="Категория"
+    )
+    subcategory = models.ForeignKey(
+        Subcategory,
+        on_delete=models.CASCADE,
+        verbose_name="Подкатегория"
+    )
+    sum = models.CharField(
+        max_length=256,
+        blank=False,
+        null=False,
+        verbose_name="Сумма"
+    )
+    comment = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Комментарий"
+    )
     class Meta:
         db_table = 'dds'
         verbose_name = 'ДДС'
