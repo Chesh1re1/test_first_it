@@ -51,11 +51,21 @@
     ```bash
    python manage.py createsuperuser
    ```
-6. **Запустите сервер**
+6. **Создайте Django secret key**
+   ```bash
+   python manage.py shell -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+   ```
+7. **Создайте .env файл**  
+   .env необходимо создать рядом с manage.py  
+   В .env файле необоходимо указать ключ, созданный предыдущим скриптом
+   ```bash
+   SECRET_KEY=django-secret-key
+   ```
+8. **Запустите сервер**
     ```bash
    python manage.py runserver
     ```
-7. **Откройте приложение**  
+9. **Откройте приложение**  
 Основной сайт: http://127.0.0.1:8000  
 Админ-панель: http://127.0.0.1:8000/admin
 
