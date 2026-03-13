@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from rangefilter.filters import DateRangeFilter
 from .models import Status, Type, Category, Subcategory, DDS
 
 admin.site.register(Status)
@@ -64,7 +65,7 @@ class DDSAdmin(admin.ModelAdmin):
     form = DDSAdminForm
     list_display = ['date_create', 'status', 'type', 'category', 'subcategory', 'sum', 'comment']
     list_filter = [
-        'date_create',
+        ('date_create', DateRangeFilter),
         'status',
         'type__name',
         'category__name',
